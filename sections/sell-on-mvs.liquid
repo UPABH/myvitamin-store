@@ -1,0 +1,118 @@
+<style>
+  .formWrapper{
+    width:80%;
+    margin:50px auto;
+  }
+  .mainForm1,.mainForm2{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    border:1px solid lightgrey;
+    padding:30px;
+  }
+  .mainForm2{
+    margin:20px 0px;
+  }
+  .formStyleDiv{
+    width:48%;
+  }
+  .formStyleDiv input{
+    width:100%;
+    margin:10px 0px;
+    border-radius:50px;
+    margin-top:5px;
+  }
+  .mainForm1 h2, .mainForm2 h2{
+    width:100%;
+  }
+  .hemvs{
+    font-size:20px;
+    font-weight:600;
+     margin:10px 0px;
+  }
+  .hemvs2{
+    font-size:24px;
+    font-weight:400;
+    margin:10px 0px;
+  }
+  .submitBtn{
+    margin:10px 0px;
+  }
+  @media(max-width:767px){
+    .formWrapper {
+    width: 90%;
+    margin: 50px auto;
+}
+ .mainForm1, .mainForm2 {
+    padding: 10px;
+}   
+    .formStyleDiv {
+    width: 100%;
+}
+  }
+</style>
+
+<div class="formWrapper">
+  <h2 class="hemvs">Sell on MVS</h2>
+<form>
+
+  <div class="mainForm1">
+      <h2 class="hemvs2">Personal Information</h2>
+    <div class="formStyleDiv">
+      <label for="full-name">Full Name:</label>
+      <input type="text" id="full-name" name="full-name" required>
+    </div>
+    <div class="formStyleDiv">
+      <label for="contact-number">Contact Number:</label>
+      <input type="number" id="contact-number" name="contact-number" required>
+    </div>
+    <div class="formStyleDiv">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+  </div>
+ 
+  
+
+   <div class="mainForm2">
+       <h2 class="hemvs2">Business Information</h2>
+      <div class="formStyleDiv">
+    <label for="website">Website:</label>
+    <input type="text" id="website" name="website" required>
+  </div class="formStyleDiv">
+  <div class="formStyleDiv">
+    <label for="business-category">Business Category:</label>
+    <select id="business-category" name="business-category">
+      <option value="">Select a category</option>
+      <option value="health">Health</option>
+      <option value="personal-care">Personal Care</option>
+      <option value="beauty">Beauty</option>
+    </select>
+  </div>
+  <div class="formStyleDiv">
+    <label for="website-url">Website URL (Optional):</label>
+    <input type="text" id="website-url" name="website-url">
+  </div>
+  <div class="formStyleDiv">
+    <label for="social-media-url">Social Media Page URL (Optional):</label>
+    <input type="text" id="social-media-url" name="social-media-url">
+  </div>
+   </div>
+ 
+  
+  <button class="submitBtn" type="submit">Submit</button>
+</form>
+</div>
+
+{% schema %}
+  {
+    "name": "Sell on MVS",
+    "settings": [],
+    "presets": [
+      {
+        "name": "Sell on MVS",
+        "category": "Theme"
+      }
+    ]
+  }
+{% endschema %}

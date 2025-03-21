@@ -1,0 +1,185 @@
+/*-----------------------------------------------------------------------------/
+/ Custom Theme CSS
+/-----------------------------------------------------------------------------*/
+/*---------------- Global Custom CSS -------------------*/
+.t4s_se_template--15575382884509__1654275886e61405be .t4s-coll-style-5 .t4s-cate-wrapper{margin-top:-20px} .t4s-footer-wrap {
+  justify-content: center ; 
+
+}
+a.t4s-product-form__btn.t4s-pr-compare {
+  display: none !important;
+}
+span.t4s-dib.t4s-swatch__current {
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.t4s-pr-item-btn.t4s-pr-compare {
+    display: none!important;
+}
+[href="#help_support"] {
+    font-weight: bold;
+    font-size: 16px!important;
+    pointer-events: none!important;
+}
+.t4s-title {
+  color: #48ad92;
+}
+.t4s-subtitle {
+  color: #48ad92;
+}
+
+
+.halal--item{
+display:none!important;}
+.t4s-menu-item.is--opend > a {
+    font-weight: bold!important;
+    color: #000!important;
+}
+.brands--list > .top-brands-viewall:hover,li.ship-return a:hover {
+    color: #48ad92;
+}
+a.at-icon-wrapper.at-share-btn.at-svc-compact, a.at-icon-wrapper.at-share-btn.at-svc-pinterest_share {
+    display: none;
+}
+.form_generater_form_div{
+  border-color:transparent!important
+}
+.form_generater_form_div .col-md-12.form_element {
+    border: 1px solid #0002!important;
+    padding: 2rem 1rem!important;
+}
+.simp-container .prorw-heading, .prorw-container .prorw-heading{
+  padding:10px 15px!important;
+}
+body.template-customers-login.prorw-drawer div.page-head {
+    padding-bottom: 1rem;
+}
+.aw-row {
+    flex-direction: row-reverse;
+    display: flex;
+}
+div#myTopnav {
+    display: flex;
+    align-items: center;
+  justify-content: space-between;
+}
+.aw-topnav div {
+    float: left;
+    display: flex;
+    text-align: left;
+    padding: 4px 12px;
+    text-decoration: none;
+    font-size: 15px;
+    align-items: center;
+}
+.aw-btn {
+    padding: 0px 35px 0px 25px;
+    border: 1px solid black;
+    border-radius: 4px;
+    height: 25px;
+    margin-left: 5px;
+    color: rgb(135,135,135);
+    background-color: transparent;
+}
+.aw-store-distance-div * {
+    width: max-content;
+}
+#pac-input {
+    width: 70%;
+    padding: 0px 15px;
+    border: 1px solid black;
+    border-radius: 4px;
+    height: 25px;
+    margin-left: 5px;
+}
+@media screen and (max-width: 767px){
+  div#myTopnav {
+    display: block;
+}
+  .aw-topnav div {
+    padding: 5px 12px 15px;
+    font-size: 14px;
+}
+  .aw-topnav div.icon {
+    margin-right: 30px;
+    padding: 0;
+}
+  .aw-btn {
+    padding: 0 15px;
+    margin-top: 5px;
+    margin-left: 2px;
+    height: 27px;
+}
+  #pac-input {
+    width: 100%;
+    margin-left: 0px;
+    height: 27px;
+}
+  .aw-row {
+    flex-direction: column-reverse;
+    display: flex;
+}
+
+}
+
+
+.t4s-customer.is--login.t4s-text-start{
+  margin-top:1rem!important;
+}
+.t4s-form-message--success {
+    font-size: 20px;
+    color: #000;
+    position: fixed;
+    background: #fff;
+    z-index: 9;
+    display: block;
+    padding: 3rem;
+    box-shadow: 2px 2px 15px #0001;
+    border: 1px solid #0001;
+    left: 50%;
+    transform: translate(-50%);
+}
+.t4s-form-message--success.hidden{
+  display:none!important;
+}
+.t4s-form-message--success::after{
+  display:block;
+  height:100vh;
+  width:100vw;
+  background:#0002;
+}
+.t4s-form-message--success::before{
+    display: inline-block;
+    content: "\2713";
+    background: #48ad92;
+    color: #fff;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    text-align: center;
+    line-height: 15px;
+    font-weight: bold;
+    padding: 0.5rem;
+    font-size: 16px;
+  }
+/*---------------- Custom CSS for only desktop -------------------*/
+@media (min-width: 1025px) {
+  
+}
+
+/*---------------- Custom CSS for tablet, mobile -------------------*/
+@media (max-width: 1024px) {
+  
+}
+
+/*---------------- Custom CSS for only tablet -------------------*/
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+}
+
+/*---------------- Custom CSS for only mobile -------------------*/
+@media (max-width: 767px){
+  
+}
