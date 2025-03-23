@@ -129,8 +129,8 @@
                 --h-btn-bg-color-hover : {{se_stts.clseast | color_darken: 15}};
             }
             .t4s-search-header__submit:hover {
-               background-color: var(--h-btn-bg-color-hover);
-               color: var(--h-btn-color);
+              background-color: var(--h-btn-bg-color-hover);
+              color: var(--h-btn-color);
             }
             .t4s-site-nav__icons .t4s-search-header__submit svg.t4s-icon {
                   color: rgba(var(--h-text-color-rgb), 0.15);
@@ -312,6 +312,20 @@
               {{ link.title }}
             </a>
           {% endfor %}
+          {%- if shop.customer_accounts_enabled -%}
+            <a
+              href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+              class="menu--item"
+              rel="nofollow"
+              aria-label="{{ customer.has_account }}"
+            >
+              {% if customer %}
+                {{ customer.name }}
+              {% else %}
+                Login/Register
+              {% endif %}
+            </a>
+          {%- endif -%}
         </div>
         <style>
           .menu--item{

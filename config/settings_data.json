@@ -1511,6 +1511,7 @@
           },
           "8e6a020a-7593-4f34-b2dc-cbbf59405e9d": {
             "type": "menu",
+            "disabled": true,
             "settings": {
               "title": "Login/Register",
               "url": "https://myvitaminstore-pk.myshopify.com/account/login",
