@@ -57,7 +57,7 @@
     "use_custom_badge": false,
     "sale_badge_color": "#d81600",
     "preorder_badge_color": "#111111",
-    "soldout_badge_color": "#d81600",
+    "soldout_badge_color": "#ddd",
     "enable_quickview": false,
     "enable_quickshop": true,
     "enable_rating": true,
