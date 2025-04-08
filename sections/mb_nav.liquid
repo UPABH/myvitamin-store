@@ -490,18 +490,6 @@
                   {%- endif -%}
                 </a>
               </li>
-              {%- if shop.customer_accounts_enabled -%}
-                {% assign customer_accounts = 'customer-accounts' %}
-                <li id="item_{{customer_accounts}}" class="t4s-menu-item t4s-item-level-0">
-                  <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}">
-                    {% if customer %}
-                      {{ customer.name }}
-                    {% else %}
-                      Login/Register
-                    {% endif %}
-                  </a>
-                </li>
-              {%- endif -%}
             {%- endif -%}
 
           {%- when 'catpr' -%}
