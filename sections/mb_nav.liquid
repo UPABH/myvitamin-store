@@ -294,9 +294,11 @@
                       >
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
                       </svg>
-                      {{ 'general.mobile_menu.my_account' | t -}}</span
-                    ><span class="t4s-mb-nav__icon"></span
-                  ></a>
+                      Hi {{ customer.first_name }}
+                      {% comment %} {{ 'general.mobile_menu.my_account' | t -}} {% endcomment %}
+                      </span>
+                      <span class="t4s-mb-nav__icon"></span>
+                    </a>
                   <ul class="t4s-sub-menu">
                     <li>
                       <a href="{{routes.account_url}}">{{ 'customer.menu.dashboard' | t }}</a>
