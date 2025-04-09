@@ -52,7 +52,7 @@
     "badge_shape": "2",
     "label_sale_style": "2",
     "use_new_badge": false,
-    "use_soldout_badge": true,
+    "use_soldout_badge": false,
     "use_preorder_badge": false,
     "use_custom_badge": false,
     "sale_badge_color": "#d81600",
