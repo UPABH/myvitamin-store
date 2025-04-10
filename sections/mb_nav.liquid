@@ -296,9 +296,9 @@
                       </svg>
                       Hi {{ customer.first_name }}
                       {% comment %} {{ 'general.mobile_menu.my_account' | t -}} {% endcomment %}
-                      </span>
-                      <span class="t4s-mb-nav__icon"></span>
-                    </a>
+                    </span>
+                    <span class="t4s-mb-nav__icon"></span>
+                  </a>
                   <ul class="t4s-sub-menu">
                     <li>
                       <a href="{{routes.account_url}}">{{ 'customer.menu.dashboard' | t }}</a>
@@ -556,26 +556,14 @@
                   {%- endif -%}
                 </a>
               </li>
-              {%- if shop.customer_accounts_enabled -%}
-                {% assign customer_accounts = 'customer-accounts' %}
-                <li id="item_{{customer_accounts}}" class="t4s-menu-item t4s-item-level-0">
-                  <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}">
-                    {% if customer %}
-                      {{ customer.name }}
-                    {% else %}
-                      Login/Register
-                    {% endif %}
-                  </a>
-                </li>
-              {%- endif -%}
             {%- endif -%}
         {%- endcase -%}
       {%- endfor -%}
     {%- else -%}
       <li>
-        <a href="/admin/themes/" style="font-size:10px;"
-          >Create your mobile menu sidebar and config from Section > Mobile Menu</a
-        >
+        <a href="/admin/themes/" style="font-size:10px;">
+          Create your mobile menu sidebar and config from Section > Mobile Menu
+        </a>
       </li>
     {%- endif -%}
   </ul>

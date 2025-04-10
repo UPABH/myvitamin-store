@@ -1281,10 +1281,6 @@
       "mb_nav": {
         "type": "mb_nav",
         "blocks": {
-          "acc_ALwEVB": {
-            "type": "acc",
-            "settings": {}
-          },
           "mb_nav-0": {
             "type": "menu",
             "settings": {
@@ -1528,7 +1524,6 @@
           }
         },
         "block_order": [
-          "acc_ALwEVB",
           "mb_nav-0",
           "mb_nav-1",
           "mb_nav-2",
