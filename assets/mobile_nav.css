@@ -21,7 +21,12 @@
     min-height: 56px !important;
 }
 
+.t4s-drawer__header.t4s-drawer__user-name {
+    background-color: #000;
+}
+
 .t4s-drawer__header.t4s-drawer__user-name span {
+    color: #fff;
     text-transform: capitalize;
 }
 
