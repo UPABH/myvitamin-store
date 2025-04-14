@@ -484,14 +484,10 @@
     color: var(--accent-color);
 }
 /* css style checkbox */
-.is--style-checkbox {
-
-}
+.is--style-checkbox {}
 
 /* css style tag */
-.is--style-tag {
-
-}
+.is--style-tag {}
 .t4s-facets__form .t4s-facet .is--style-tag li {
     display: inline-block;
     vertical-align: top;
@@ -512,9 +508,7 @@
     border-color: var(--accent-color);
 }
 /* css style color */
-.is--style-color {
-
-}
+.is--style-color {}
 .t4s-facets__form .t4s-facet .is--style-color .t4s-filter_color {
     width: 24px;
     height: 24px;

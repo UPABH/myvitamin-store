@@ -7,11 +7,11 @@
 <link rel="stylesheet" href="{{ 'mobile_nav.css' | asset_url }}" media="all">
 {%- if mobile_nav_type == '1' or mobile_nav_type == '2' -%}
   {%- if shop.customer_accounts_enabled -%}
-    <div class="t4s-drawer__header">
+    <div class="t4s-drawer__header t4s-drawer__user-name">
       <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}">
         <span>
           {% if customer %}
-            Hi. {{ customer.first_name }}
+            Hi {{ customer.first_name }}
           {% else %}
             Login/Register
           {% endif %}
