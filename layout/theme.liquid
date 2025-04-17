@@ -33,8 +33,8 @@ t4sp-theme t4s-wrapper__{{settings.general_layout}} rtl_{{isRTL}} swatch_color_s
     <meta property="og:type" content="product">
     <meta property="og:title" content="{{ product.title }}">
     <meta property="og:url" content="{{ shop.url }}{{ product.url }}">
-    <meta property="og:image" content="{{ product.featured_image | img_url: '1024x1024' | absolute_url }}">
-    <meta property="og:image:secure_url" content="{{ product.featured_image | img_url: '1024x1024' | absolute_url }}">
+    <meta property="og:image" content="{{ product.images[0] | img_url: '1024x1024' | absolute_url }}">
+    <meta property="og:image:secure_url" content="{{ product.images[0] | img_url: '1024x1024' | absolute_url }}">
 
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
