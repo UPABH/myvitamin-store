@@ -33,6 +33,7 @@ t4sp-theme t4s-wrapper__{{settings.general_layout}} rtl_{{isRTL}} swatch_color_s
     <meta property="og:type" content="product">
     <meta property="og:title" content="{{ product.title }}">
     <meta property="og:url" content="{{ shop.url }}{{ product.url }}">
+    <link rel="image_src" href="{{ product.featured_image | img_url: '1024x1024' | absolute_url }}">
     <meta property="og:image" content="{{ product.featured_image | img_url: '1024x1024' | absolute_url }}">
     <meta property="og:image:secure_url" content="{{ product.featured_image | img_url: '1024x1024' | absolute_url }}">
 
