@@ -79,7 +79,7 @@
     "mess_currency": "",
     "colors_css": true,
     "custom_css_t4s": true,
-    "global_css": ".t4s_se_template--15575382884509__1654275886e61405be .t4s-coll-style-5 .t4s-cate-wrapper{margin-top:-20px} .t4s-footer-wrap {\n  justify-content: center ; \n\n}\na.t4s-product-form__btn.t4s-pr-compare {\n  display: none !important;\n}\nspan.t4s-dib.t4s-swatch__current {\n    font-size: 14px;\n    font-weight: 500;\n    text-transform: capitalize;\n}\n.t4s-pr-item-btn.t4s-pr-compare {\n    display: none!important;\n}\n[href=\"#help_support\"] {\n    font-weight: bold;\n    font-size: 16px!important;\n    pointer-events: none!important;\n}\n.t4s-title {\n  color: #48ad92;\n}\n.t4s-subtitle {\n  color: #48ad92;\n}\n\n\n.halal--item{\ndisplay:none!important;}",
+    "global_css": ".t4s_se_template--15575382884509__1654275886e61405be .t4s-coll-style-5 .t4s-cate-wrapper{margin-top:-20px} .t4s-footer-wrap {\n  justify-content: center ; \n\n}\na.t4s-product-form__btn.t4s-pr-compare {\n  display: none !important;\n}\nspan.t4s-dib.t4s-swatch__current {\n    font-size: 14px;\n    font-weight: 500;\n    text-transform: capitalize;\n}\n.t4s-pr-item-btn.t4s-pr-compare {\n    display: none!important;\n}\n[href=\"#help_support\"] {\n    font-weight: bold;\n    font-size: 16px!important;\n    pointer-events: none!important;\n}\n.t4s-title {\n  color: #48ad92;\n}\n.t4s-subtitle {\n  color: #48ad92;\n}\n\n\n.halal--item{\ndisplay:block!important;}",
     "desktop_css": "",
     "tablet_mobile_css": "",
     "t4s_custom_js": true,
