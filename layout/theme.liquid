@@ -38,10 +38,10 @@ t4sp-theme t4s-wrapper__{{settings.general_layout}} rtl_{{isRTL}} swatch_color_s
     <meta property="og:image" content="{{ product.featured_image | img_url: '1024x1024' }}">
     <meta property="og:image:secure_url" content="{{ product.featured_image | img_url: '1024x1024' }}">
 
-    {%- assign custom_canonical = "" -%}
-    {%- if template == "product" and product.metafields.custom.canonical.value != blank -%}
+    {%- assign custom_canonical = '' -%}
+    {%- if template == 'product' and product.metafields.custom.canonical.value != blank -%}
       {%- assign custom_canonical = product.metafields.custom.canonical.value -%}
-      {%- elsif template == "collection" and collection.metafields.custom.canonical.value != blank -%}
+    {%- elsif template == 'collection' and collection.metafields.custom.canonical.value != blank -%}
       {%- assign custom_canonical = collection.metafields.custom.canonical.value -%}
     {%- endif -%}
 
@@ -86,7 +86,7 @@ t4sp-theme t4s-wrapper__{{settings.general_layout}} rtl_{{isRTL}} swatch_color_s
     {{ 'search-hidden.css' | asset_url | stylesheet_tag }}
     <script src="{{ 'lazysizes.min.js' | asset_url }}" async="async"></script>
     <script src="{{ 'global.min.js' | asset_url }}" defer="defer"></script>
-    {%- if tinyscript -%}{{ content_for_header }}{%- else -%}{% render 'tiny-script-control' %}{%- endif -%}
+    {{ content_for_header }}
     {%- render 'head_assets', t_name: t_name, isRTL: isRTL -%}
 
     {% render 'proviews_assets' %}
