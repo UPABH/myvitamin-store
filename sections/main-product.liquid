@@ -1,9 +1,40 @@
 {%- comment -%}
   Color_pink | alt text
   t4option0_0 | alt text
+  Color_pink | alt text
+  t4option0_0 | alt text
 {%- endcomment -%}
 
 {%- liquid
+  assign isProductAvailable = product.available
+  if isProductAvailable and settings.variant_remove == '2'
+    assign remove_soldout = true
+  else
+    assign remove_soldout = false
+  endif
+  assign se_stts = section.settings
+  assign se_id = section.id
+  assign pr_se_id = product.id | append: se_id
+  assign media_layout = se_stts.media_layout
+  assign pr_variants = product.variants
+  assign variants_size = pr_variants.size
+  assign selected_variant = product.selected_variant
+  assign pr_curent = settings.pr_curent
+  if pr_curent == '1' and variants_size > 1
+    assign current_variant = selected_variant
+  elsif pr_curent == '2'
+    assign current_variant = selected_variant | default: pr_variants.first
+    if remove_soldout and current_variant.available == false and isProductAvailable
+      assign current_variant = product.first_available_variant
+    endif
+  else
+    assign current_variant = product.selected_or_first_available_variant
+  endif
+  assign PR_no_pick = false
+  if pr_curent == '1' and variants_size > 1 and selected_variant == blank
+    assign PR_no_pick = true
+  endif
+  assign isProductDefault = product.has_only_default_variant
   assign isProductAvailable = product.available
   if isProductAvailable and settings.variant_remove == '2'
     assign remove_soldout = true
@@ -730,55 +761,59 @@
                   {%- assign na_str = 'products.product.na' | t -%}
                   {%- capture meta -%}
 
-                {%- if bk_stts.show_options and product.has_only_default_variant == false -%}{%- assign ck_meta = true -%}
-                {%- for product_option in product.options_with_values -%}
-                <div class="t4s-option-wrapper">{{ product_option.name | escape }}: <span class="t4s-productMeta__value t4s-option-value t4s-csecondary t4s-dib">{{product_option.values | join:', '}}</span></div>
-                {%- endfor -%}
-                {%- endif -%}
+                    {%- if bk_stts.show_options and product.has_only_default_variant == false -%}{%- assign ck_meta = true -%}
+                      {%- for product_option in product.options_with_values -%}
+                      <div class="t4s-option-wrapper">{{ product_option.name | escape }}: <span class="t4s-productMeta__value t4s-option-value t4s-csecondary t4s-dib">{{product_option.values | join:', '}}</span></div>
+                      {%- endfor -%}
+                    {%- endif -%}
 
-                {%- if bk_stts.show_vendor and pr_vendor != blank %}{% assign ck_meta = true -%}
-                  {%- liquid
-                  assign pr_vendor_url = pr_vendor | url_for_vendor
-                  if use_link_vendor
-                    assign pr_vendor_handle = product.vendor | handle
-                    assign collection_vendor = collections[pr_vendor_handle]
-                    assign pr_vendor_url = collection_vendor.url | default:pr_vendor_url
-                  endif -%}
-                  <div class="t4s-vendor-wrapper">{{ 'products.product.product_vendor' | t }} <span class="t4s-productMeta__value t4s-vendor-value t4s-csecondary t4s-dib"><a href="{{pr_vendor_url}}">{{ pr_vendor }}</a></span></div>
-                {%- endif -%}
+                    {%- if bk_stts.show_vendor and pr_vendor != blank %}{% assign ck_meta = true -%}
+                      {%- liquid
+                      assign pr_vendor_url = pr_vendor | url_for_vendor
+                      if use_link_vendor
+                        assign pr_vendor_handle = product.vendor | handle
+                        assign collection_vendor = collections[pr_vendor_handle]
+                        assign pr_vendor_url = collection_vendor.url | default:pr_vendor_url
+                      endif -%}
+                      <div class="t4s-vendor-wrapper">{{ 'products.product.product_vendor' | t }} <span class="t4s-productMeta__value t4s-vendor-value t4s-csecondary t4s-dib"><a href="{{pr_vendor_url}}">{{ pr_vendor }}</a></span></div>
+                    {%- endif -%}
 
-                {%- if bk_stts.show_type and product.type != blank -%} {%- assign ck_meta = true -%}
-                  {%- liquid
-                  if settings.use_link_type
-                  assign pr_type_handle = product.type | handle
-                  assign collection_type = collections[pr_type_handle]
-                  endif -%}
-                <div class="t4s-type-wrapper">{{ 'products.product.product_type' | t }} <span class="t4s-productMeta__value t4s-type-value t4s-csecondary t4s-dib"><a href="{% if settings.use_link_type and collection_type.url != blank %}{{ collection_type.url }}{% else %}{{ product.type | url_for_type }}{% endif %}">{{ product.type }}</a></span></div>
-                {%- endif -%}
+                    {%- if bk_stts.show_type and product.type != blank -%} {%- assign ck_meta = true -%}
+                      {%- liquid
+                        if settings.use_link_type
+                          assign pr_type_handle = product.type | handle
+                          assign collection_type = collections[pr_type_handle]
+                        endif
+                      -%}
+                      <div class="t4s-type-wrapper">{{ 'products.product.product_type' | t }} <span class="t4s-productMeta__value t4s-type-value t4s-csecondary t4s-dib"><a href="{% if settings.use_link_type and collection_type.url != blank %}{{ collection_type.url }}{% else %}{{ product.type | url_for_type }}{% endif %}">{{ product.type }}</a></span></div>
+                    {%- endif -%}
 
-                {%- if bk_stts.show_sku -%} {%- assign ck_meta = true -%}
-                <div class="t4s-sku-wrapper{% if current_variant.sku == blank %} t4s-dn{% endif %}" data-product-sku>{{ 'products.product.product_sku' | t }} <span class="t4s-productMeta__value t4s-sku-value t4s-csecondary" style="font-weight:400" data-product__sku-number>{{current_variant.sku}}</span></div>
-                {%- endif -%}
+                    {%- if bk_stts.show_sku -%} {%- assign ck_meta = true -%}
+                      <div class="t4s-sku-wrapper{% if current_variant.sku == blank %} t4s-dn{% endif %}" data-product-sku>{{ 'products.product.product_sku' | t }} <span class="t4s-productMeta__value t4s-sku-value t4s-csecondary" style="font-weight:400" data-product__sku-number>{{current_variant.sku}}</span></div>
+                    {%- endif -%}
 
-                {%- if bk_stts.show_barcode -%} {%- assign ck_meta = true -%}
-                <div class="t4s-barcode-wrapper{% if current_variant.barcode  == blank %} t4s-dn{% endif %}" data-product-barcode>{{ 'products.product.product_barcode' | t }} <span class="t4s-productMeta__value t4s-barcode-value t4s-csecondary" data-product__barcode-number>{{current_variant.barcode }}</span></div>
-                {%- endif -%}
+                    {%- if bk_stts.show_barcode -%} {%- assign ck_meta = true -%}
+                      <div class="t4s-barcode-wrapper{% if current_variant.barcode  == blank %} t4s-dn{% endif %}" data-product-barcode>{{ 'products.product.product_barcode' | t }} <span class="t4s-productMeta__value t4s-barcode-value t4s-csecondary" data-product__barcode-number>{{current_variant.barcode }}</span></div>
+                    {%- endif -%}
 
-                {%- if bk_stts.show_available -%} {%- assign ck_meta = true -%}
-                <div data-product-available class="t4s-available-wrapper"><strong>{{ 'products.product.available' | t }}</strong> <span class="t4s-productMeta__value t4s-available-value">
-                  <span style="font-weight: 400;" data-available-status class="t4s-available-status t4s-csecondary t4s-dib {% unless isProductAvailable %} t4s-dn{% endunless %}">
-                    <span data-instock-status class="{{classdn1}}">{{ 'products.product.in_stock_status' | t }}</span>
-                    <span data-preorder-status class="{{classdn2}}">{{ 'products.product.pre_oder_status' | t }}</span>
-                  </span>
-                  <span data-soldout-status class="t4s-soldout-status t4s-csecondary t4s-dib{% if isProductAvailable %} t4s-dn{% endif %}">{{ 'products.product.sold_out_status' | t }}</span>
-                  </span></div>
-                {%- endif -%}
+                    {%- if bk_stts.show_available -%} {%- assign ck_meta = true -%}
+                      <div data-product-available class="t4s-available-wrapper">
+                        <strong>{{ 'products.product.available' | t }}</strong>
+                        <span class="t4s-productMeta__value t4s-available-value">
+                          <span style="font-weight: 400;" data-available-status class="t4s-available-status t4s-csecondary t4s-dib {% unless isProductAvailable %} t4s-dn{% endunless %}">
+                            <span data-instock-status class="{{classdn1}}">{{ 'products.product.in_stock_status' | t }}</span>
+                            <span data-preorder-status class="{{classdn2}}">{{ 'products.product.pre_oder_status' | t }}</span>
+                          </span>
+                          <span data-soldout-status class="t4s-soldout-status t4s-csecondary t4s-dib{% if isProductAvailable %} t4s-dn{% endif %}">{{ 'products.product.sold_out_status' | t }}</span>
+                        </span>
+                      </div>
+                    {%- endif -%}
 
-                {%- if product.collections.size > 0 and bk_stts.show_category %}{% assign ck_meta = true -%}
-                <div class="t4s-collections-wrapper">{{ 'products.product.product_category' | t }}
-                  {% for collection in product.collections -%}{{ collection.title | link_to: collection.url, class: 't4s-dib'  }} {% endfor -%}
-                </div>
-                {%- endif -%}
+                    {%- if product.collections.size > 0 and bk_stts.show_category %}{% assign ck_meta = true -%}
+                      <div class="t4s-collections-wrapper">{{ 'products.product.product_category' | t }}
+                        {% for collection in product.collections -%}{{ collection.title | link_to: collection.url, class: 't4s-dib'  }} {% endfor -%}
+                      </div>
+                    {%- endif -%}
 
                 {%- if pr_tags.size > 0 and bk_stts.show_tags and product.collections.size > 0 %}{% assign ck_meta = true -%}
                   {%- assign tag_cat_url = collection.url | default:product.collections.first.url -%}
