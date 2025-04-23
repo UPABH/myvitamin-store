@@ -30,13 +30,6 @@ t4sp-theme t4s-wrapper__{{settings.general_layout}} rtl_{{isRTL}} swatch_color_s
       content="width=device-width, initial-scale=1, height=device-height, minimum-scale=1.0, maximum-scale=1.0"
     >
     <meta name="theme-color" content="{{ settings.body_bg }}">
-    <meta property="og:type" content="product">
-    <meta property="og:title" content="{{ product.title }}">
-    <meta property="og:url" content="{{ shop.url }}{{ product.url }}">
-    <meta property="og:image:type" content="image/jpeg">
-    <link rel="image_src" href="{{ product.featured_image | img_url: '1024x1024' }}">
-    <meta property="og:image" content="{{ product.featured_image | img_url: '1024x1024' }}">
-    <meta property="og:image:secure_url" content="{{ product.featured_image | img_url: '1024x1024' }}">
 
     {%- assign custom_canonical = '' -%}
     {%- if template == 'product' and product.metafields.custom.canonical.value != blank -%}
