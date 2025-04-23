@@ -1,9 +1,40 @@
 {%- comment -%}
   Color_pink | alt text
   t4option0_0 | alt text
+  Color_pink | alt text
+  t4option0_0 | alt text
 {%- endcomment -%}
 
 {%- liquid
+  assign isProductAvailable = product.available
+  if isProductAvailable and settings.variant_remove == '2'
+    assign remove_soldout = true
+  else
+    assign remove_soldout = false
+  endif
+  assign se_stts = section.settings
+  assign se_id = section.id
+  assign pr_se_id = product.id | append: se_id
+  assign media_layout = se_stts.media_layout
+  assign pr_variants = product.variants
+  assign variants_size = pr_variants.size
+  assign selected_variant = product.selected_variant
+  assign pr_curent = settings.pr_curent
+  if pr_curent == '1' and variants_size > 1
+    assign current_variant = selected_variant
+  elsif pr_curent == '2'
+    assign current_variant = selected_variant | default: pr_variants.first
+    if remove_soldout and current_variant.available == false and isProductAvailable
+      assign current_variant = product.first_available_variant
+    endif
+  else
+    assign current_variant = product.selected_or_first_available_variant
+  endif
+  assign PR_no_pick = false
+  if pr_curent == '1' and variants_size > 1 and selected_variant == blank
+    assign PR_no_pick = true
+  endif
+  assign isProductDefault = product.has_only_default_variant
   assign isProductAvailable = product.available
   if isProductAvailable and settings.variant_remove == '2'
     assign remove_soldout = true
@@ -499,7 +530,41 @@
                   </h1>
                 {% when 'status_country' %}
                   {% if bk_stts.enable_status == true %}
-                    {% if product.metafields.custom.status != blank %}
+                    {% assign product_status_list = product.metafields.custom.product_status.value %}
+                    {% if product_status_list != blank %}
+                      <ul class="status--list ping">
+                        {% for product_status in product_status_list %}
+                          {% if product_status.status == 'halal' %}
+                            <li class="halal--item">
+                              <img
+                                src="https://cdn.shopify.com/s/files/1/0739/5819/5513/files/halal.png?v=1679378768"
+                                alt="Product is Halal"
+                                loading="lazy"
+                              >
+                            </li>
+                          {% endif %}
+                          {% if product_status.status == 'vegetarian' %}
+                            <li class="vegetarian--item">
+                              <img
+                                src="https://cdn.shopify.com/s/files/1/0739/5819/5513/files/vegetarian-round-icon-with-green-leaves-dark-green-text-icon-1_95164-8346.jpg?v=1745059581"
+                                alt="Product is Vegetarian"
+                                loading="lazy"
+                              >
+                            </li>
+                          {% endif %}
+                          {% if product_status.status == 'vegan' %}
+                            <li class="vegan--item">
+                              <img
+                                src="https://cdn.shopify.com/s/files/1/0739/5819/5513/files/vegan.png?v=1679378768"
+                                alt="Product is Vegan"
+                                loading="lazy"
+                              >
+                            </li>
+                          {% endif %}
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                    {% if product_status_list == blank and product.metafields.custom.status != blank %}
                       {% assign splitedStatus = product.metafields.custom.status | split: '/' %}
                       <ul class="status--list">
                         {% for status in splitedStatus %}
@@ -750,22 +815,26 @@
                       </div>
                     {%- endif -%}
 
-                    {%- if pr_tags.size > 0 and bk_stts.show_tags and product.collections.size > 0 %}{% assign ck_meta = true -%}
-                      {%- assign tag_cat_url = collection.url | default:product.collections.first.url -%}
-                      <div class="t4s-tags-wrapper">{{ 'products.product.product_tag' | t }}
-                        {% for tag in pr_tags -%}
-                          {%- if tag contains 't4_' or tag contains 'badge_' %}
-                            {% continue %}
-                          {% endif -%}
-                          <a class="t4s-dib" href="{{tag_cat_url}}/{{ tag | handle }}">{{ tag | remove:'type ' | remove:'Type ' }}</a>
-                        {% endfor -%}
-                      </div>
-                    {%- endif -%}
-                    {% assign product_country = product.metafields.custom.country %}
-                    {% if bk_stts.show_country and product_country != blank %}
-                      <div class="t4s-type-wrapper t4s-country-wrapper"><strong>{{ "Country:" }}</strong> <span class="t4s-productMeta__value t4s-type-value t4s-csecondary t4s-dib">{{ product_country }}</span></div>
-                    {% endif %}
-                  {%- endcapture -%}
+                {%- if pr_tags.size > 0 and bk_stts.show_tags and product.collections.size > 0 %}{% assign ck_meta = true -%}
+                  {%- assign tag_cat_url = collection.url | default:product.collections.first.url -%}
+                  <div class="t4s-tags-wrapper">{{ 'products.product.product_tag' | t }}
+                    {% for tag in pr_tags -%}
+                    {%- if tag contains 't4_' or tag contains 'badge_' %}{% continue %}{% endif -%}
+                    <a class="t4s-dib" href="{{tag_cat_url}}/{{ tag | handle }}">{{ tag | remove:'type ' | remove:'Type ' }}</a> {% endfor -%}
+                  </div>
+                {%- endif -%}
+               {% if bk_stts.show_country %}
+                  {% for tag in product.tags %}
+                      {% assign tagHandle = tag | handle %}
+                      {% if tagHandle contains "country" %}
+                        {% assign tagSlpited = tag | split:":" %}        
+                      {% endif %}
+                  {% endfor %}
+               {% endif %}
+                {% if tagSlpited != blank %}
+                  <div class="t4s-type-wrapper t4s-country-wrapper"><strong>{{ "Country:" }}</strong> <span class="t4s-productMeta__value t4s-type-value t4s-csecondary t4s-dib">{{ tagSlpited | last }}</span></div>
+                {% endif %}
+              {%- endcapture -%}
                   {%- if ck_meta -%}
                     <div class="t4s-product_meta" {{ block.shopify_attributes }}>{{- meta -}}</div>
                   {%- endif -%}
