@@ -1,7 +1,18 @@
 {
   "article": [],
   "blog": [],
-  "collection": [],
+  "collection": [
+    {
+      "key": "canonical",
+      "namespace": "custom",
+      "name": "Canonical",
+      "description": "",
+      "type": {
+        "name": "url",
+        "category": "URL"
+      }
+    }
+  ],
   "company": [],
   "company_location": [],
   "location": [],
@@ -134,6 +145,46 @@
       "namespace": "shopify",
       "name": "Color",
       "description": "Defines the primary color or pattern, such as blue or striped",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "canonical",
+      "namespace": "custom",
+      "name": "Canonical",
+      "description": "",
+      "type": {
+        "name": "url",
+        "category": "URL"
+      }
+    },
+    {
+      "key": "dietary-preferences",
+      "namespace": "shopify",
+      "name": "Dietary preferences",
+      "description": "Helps identify products suitable for specific diets, e.g. vegan, nut free",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "product_status",
+      "namespace": "custom",
+      "name": "Product Status",
+      "description": "",
+      "type": {
+        "name": "list.metaobject_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "product_ingredients",
+      "namespace": "custom",
+      "name": "Product Ingredients",
+      "description": "",
       "type": {
         "name": "list.metaobject_reference",
         "category": "REFERENCE"
